@@ -12,7 +12,7 @@ permissions:
 jobs:
   backend:
     name: Python lint and Frappe tests
-    runs-on: ubuntu-22.04
+    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'boat-pos' }}
     services:
       mariadb:
         image: mariadb:10.6
